@@ -98,8 +98,8 @@ class TUMEvent:
 
     def is_event(self, evt):
         if self.summary != evt.summary: return False
-        if self.dt_start != evt.dt_start: return False
-        if self.dt_end != evt.dt_end: return False
+        if self.dt_start.dt != evt.dt_start.dt: return False
+        if self.dt_end.dt != evt.dt_end.dt: return False
         return True
 
     def add_location(self, location):

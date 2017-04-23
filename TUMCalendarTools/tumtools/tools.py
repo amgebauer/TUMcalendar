@@ -141,14 +141,14 @@ def execute(content):
         if component.name == "VEVENT":
             event = parse_event(component)
 
-            dublicate_event = False
+            duplicate_event = False
             for item in tum_events:
                 if item.is_event(event):
-                    dublicate_event = True
+                    duplicate_event = True
                     item.add_location(event.location)
                     break
 
-            if not dublicate_event:
+            if not duplicate_event:
                 tum_events.append(event)
 
     event_str = ''

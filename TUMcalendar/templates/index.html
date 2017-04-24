@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TUMcalendar</title>
+		<link href="https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style type="text/css">
+		body {
+			font-family: 'Open Sans', sans-serif;
+		}
+
+        input {
+			font-family: 'Open Sans', sans-serif;
+        }
+
+        url {
+            font-family: 'Inconsolata', monospace;
+            background-color: #eee;
+            border-radius: 5px;
+            padding: 5px;
+        }
+		</style>
+        <script type="text/javascript">
+
+        var inputElement;
+        var outputElement;
+        window.onload = function() {
+            inputElement = document.getElementById("calUrlInput");
+            outputElement = document.getElementById("calUrlOutput");
+            generateUrl();
+            inputElement.addEventListener ('keyup', generateUrl);
+        }
+
+        function generateUrl() {
+            if(inputElement.value.trim() == "") {
+                outputElement.innerHTML = "&lt;no available yet&gt;";
+            } else {
+                outputElement.innerHTML = "{{base_url}}?url="+encodeURIComponent(inputElement.value.trim());
+            }
+            
+        }
+
+        </script>
+	</head>
+	<body>
+		<h1>TUMcalendar</h1>
+        More info about the project can be found <a href="https://github.com/ammyg/TUMcalendar"  target="_blank">here</a>.
+
+        <h2>How-To</h2>
+        <p>Go to <a href="https://campus.tum.de" target="_blank">TUMonline</a> &rarr; <a href="https://campus.tum.de/tumonline/wbKalender.wbPerson" target="_blank">Calendar</a> &rarr; Publish and paste the displayed iCAL address here:</p>
+        <p><input type="text" id="calUrlInput" size="50" placeholder="Paste the iCAL URL here" /></p>
+        <p>Finally add the URL <url class="url" id="calUrlOutput">&lt;no available yet&gt;</url> to your favourite calendar, e.g. Google Calendar</p>
+	</body>
+</html>

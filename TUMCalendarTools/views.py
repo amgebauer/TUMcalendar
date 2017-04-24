@@ -1,10 +1,11 @@
 import urllib.request
 from TUMCalendarTools.tumtools import tools as tumtools
+from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    baseurl = "https://"+request.META["HTTP_HOST"]+"/TUMcalendar/exec"
-    return HttpResponse("Hello, use this base url: "+baseurl)
+    base_url = "https://"+request.META["HTTP_HOST"]+"/exec"
+    return render(request, 'templates/index.html', {'base_url': base_url})
 
 def execute(request):
     url = request.GET.get('url', '')

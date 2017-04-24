@@ -29,30 +29,58 @@
 
         var inputElement;
         var outputElement;
-        var warningElement;
+        var lengthWarningElement;
+        var invalidWarningElement;
         window.onload = function() {
             inputElement = document.getElementById("calUrlInput");
             outputElement = document.getElementById("calUrlOutput");
-            warningElement = document.getElementById("urlLengthWarning");
+            lengthWarningElement = document.getElementById("urlLengthWarning");
+            invalidWarningElement = document.getElementById("invalidWarning");
             generateUrl();
             inputElement.addEventListener ('keyup', generateUrl);
         }
 
         function generateUrl() {
             if(inputElement.value.trim() == "") {
-                outputElement.innerHTML = "&lt;not available yet&gt;";
-                warningElement.style.display = 'none';
+                displayUrl(null, 1)
             } else {
-                var url = "{{base_url}}?url="+encodeURIComponent(inputElement.value.trim());
-                if(url.length > 127) {
-                    warningElement.style.display = 'block';
-                }
-                else {
-                    warningElement.style.display = 'none';
-                }
-                outputElement.innerHTML = "{{base_url}}?url="+encodeURIComponent(inputElement.value.trim());
+                var url = inputElement.value.trim();
+                var pStud = getParameterFromUrl("pStud", url);
+                var pToken = getParameterFromUrl("pToken", url);
+                if(pStud == null || pStud == '' || pToken == null || pToken == '') {
+                    displayUrl(null, 2);
+                } else {
+                    displayUrl("{{base_url}}?pStud="+encodeURIComponent(pStud)+"&pToken="+encodeURIComponent(pToken), 0);
+                } 
             }
-            
+        }
+
+        function displayUrl(url, err) {
+            if(url == null) {
+                outputElement.innerHTML = "&lt;not available yet&gt;";
+                lengthWarningElement.style.display = 'none';
+            } else {
+                if(url.length > 127) {
+                    lengthWarningElement.style.display = 'block';
+                } else {
+                    lengthWarningElement.style.display = 'none';
+                }
+                outputElement.innerHTML = url;
+            }
+
+            if(err == 2) {
+                invalidWarningElement.style.display = 'block';
+            } else {
+                invalidWarningElement.style.display = 'none';
+            }
+        }
+
+        function getParameterFromUrl(name, url) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
         </script>
@@ -66,5 +94,6 @@
         <p><input type="text" id="calUrlInput" size="50" placeholder="Paste the iCAL URL here" /></p>
         <p>Finally add the URL <url class="url" id="calUrlOutput">&lt;not available yet&gt;</url> to your favourite calendar, e.g. Google Calendar</p>
         <p class="warning" id="urlLengthWarning">The output URL is quite long and Google Calendar may refuses to add the calendar. In order to avoid this use an Url Shortener (e.g. <a href="https://goo.gl" target="_blank">https://goo.gl</a>) before adding it to Google calendar!</p>
+        <p class="warning" id="invalidWarning">Your URL is not valid or supported!</p>
 	</body>
 </html>

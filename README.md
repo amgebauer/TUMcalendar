@@ -41,15 +41,15 @@ All lecture specific stuff in the description will be kept (like chapters). Only
 * Abhaltung
 * Import
 
-Different parts of the description will be separated with a new line
+Different parts of the description will be separated with a new line.
 
-In a new line, the description will be extended with the name of the module it is provided in the title.
+In a new line, the description will be extended with the name of the module if is provided in the title.
 
 Examle:
 * ~~fix; Abhaltung;~~ Orbitales Rendezvous
 
 ### Duplicate events
-If duplicate events, i.e. events with the same title, start- and endtime, are detected the unnecessary events were deleted and the different locations were added to the original event in a new line.
+If duplicate events i.e. events with the same title, start- and endtime are detected the unnecessary events will be ignored and the different locations will be added to the original event in a new line.
 
 ## How to use
 The `master`-branch of this repository is hosted on heroku (in europe) and can be reached with [https://tumcalendar.herokuapp.com/](https://tumcalendar.herokuapp.com/). A small instruction page can be found at the [index](https://tumcalendar.herokuapp.com/).

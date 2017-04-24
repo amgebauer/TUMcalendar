@@ -55,7 +55,7 @@ If duplicate events i.e. events with the same title, start- and endtime are dete
 The `master`-branch of this repository is hosted on heroku (in europe) and can be reached with [https://tumcalendar.herokuapp.com/](https://tumcalendar.herokuapp.com/). A small instruction page can be found at the [index](https://tumcalendar.herokuapp.com/).
 
 ## How to configure
-The core of the app with all modifications can be found [here](blob/master/TUMCalendarTools/tumtools/tools.py). Modify it as you want and send me a pull request.
+The core of the app with all modifications can be found [here](TUMCalendarTools/tumtools/tools.py). Modify it as you want and send me a pull request.
 
 ## How to host and deploy
 This app can be simply hosted on HEROKU as an app without modifications. Just create a new app on heroku and deploy it. The environment variable `SECRET_KEY` must be set with an arbitrary random secret key.

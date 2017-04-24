@@ -130,7 +130,7 @@ def execute(content):
     ncal.add('VERSION', gcal.get("VERSION"))
     ncal.add('CALSCALE', gcal.get("CALSCALE"))
     ncal.add('X-WR-TIMEZONE', gcal.get("X-WR-TIMEZONE"))
-    ncal.add('X-PUBLISHED', gcal.get("X-PUBLISHED"))
+    ncal.add('X-PUBLISHED-TTL', gcal.get("X-PUBLISHED-TTL"))
     ncal.add('PRODID', gcal.get("PRODID"))
     ncal.add('X-WR-CALNAME', gcal.get("X-WR-CALNAME"))
     ncal.add('X-WR-CALDESC', gcal.get("X-WR-CALDESC"))
